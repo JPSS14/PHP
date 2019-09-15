@@ -1,0 +1,48 @@
+<!DOCTYPE html>						 <!--obrigatorio para identificar que é html5-->  
+
+<html> <!-- todo codigo html deve está dentro dessa tag -->
+
+	<head> <!-- o head é o cabeçalho do documento html, caso precise de carregar java script ou css é aqui que deverá ser feito
+            pois o head é iniciado antes do contudo do site-->
+		<meta charset="UTF-8">      <!--obrigatorio para determinar o padrão de letras-->  
+		<link rel="stylesheet" href="css.css"> <!--adicionando  o css externo-->
+        <title>teste</title>
+        
+	</head>
+	
+	<body> <!-- toda a estrutuara do site deve está dentro da tag body-->
+	
+	
+		<form class="box" action="resultado.php" method="post"> <!-- como o usuario ainda não digitou os dados entregamos a ele esse formulário
+                                                            para ele preencher -->
+		
+			<input type="text" name="nome" placeholder="Nome">
+			
+			<input type="text" name="sobrenome" placeholder="Sobrenome">
+			
+			<input type="text" name="ndia" placeholder="dd"> 
+			<input type="text" name="nmes" placeholder="mm"> 
+			<input type="text" name="nano" placeholder="aaaa">
+			
+			<input type="text" name="idade" placeholder="idade" disabled> <!-- o disabled significa que esse campo não pode ser editado pelo
+                                                                            usuario -->
+			
+			<input type="text" name="meses" placeholder="meses" disabled>
+		
+			<input type="text" name="dias" placeholder="Dias" disabled>
+			
+			<input type="submit" value="Enviar">
+			
+			
+		
+		</form>
+		
+	
+		
+		
+		
+	
+		
+	</body> <!-- fechando o body-->
+
+</html>     <!-- fechando o html -->
