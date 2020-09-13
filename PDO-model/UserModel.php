@@ -3,11 +3,21 @@
 class UserModel extends Model
 {
 
-    protected static $safe = ["created_at", "updated_at"];
+    protected static $safe = ["matricula","created_at", "updated_at"];
     protected static $entity = "usuario";
 
-    public function bootstrap()
+    public function bootstrap(string $matricula, string $nome_usuario, string $nome,string $data_nascimento, string $email, string $telefone, string $celular, string $cpf ,bool $tipo_conta = null)
     {
+        $this->matricula = $matricula;
+        $this->$nome_usuario = $nome_usuario;
+        $this->nome = $nome;
+        $this->tipo_conta = $tipo_conta;
+        $this->data_nascimento = $data_nascimento;
+        $this->email = $email;
+        $this->telefone = $telefone;
+        $this->celular = $celular;
+        $this->cpf = $cpf;
+        return $this;
     }
 
     public function load(int $id, string $columns = "*"): ?UserModel
@@ -50,6 +60,25 @@ class UserModel extends Model
 
     public function save()
     {
+
+        if(!empty($this->matricula)){
+
+        }
+
+        if(empty($this->matricula)){
+            if($this->find($this->email)){
+                $this->message = "O email informado já existe!";
+                return null;
+            }
+
+            $userMatricula = $this->create(self::entity, $this->safe());
+            if($this->fail()){
+                $this->message = "Erro ao cadastrar, verifique os dados";
+            }
+            $this->message = "Cadastro realizado com sucesso";
+        }
+        $this->data = $this->read("SELECT * FROM usuario WHERE matricula = :matricula", ":matricula={$matricula}")->fetch();
+        return $this;
     }
 
     public function destroy()

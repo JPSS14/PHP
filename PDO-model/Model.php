@@ -39,8 +39,9 @@ abstract class Model
         return $this->message;
     }
 
-    protected function create()
+    protected function create(string $entity, array $data)
     {
+
     }
 
     protected function read(string $select, string $params = null): ?\PDOStatement
@@ -74,10 +75,20 @@ abstract class Model
 
     protected function safe(): ?array
     {
-        return $this->safe;
+       $safe = (array)$this->data;
+       foreach (static::$safe as $unset){
+           var_dump($unset);
+           unset($safe[$unset]);
+       }
+       return $safe;
     }
 
-    private function filter()
+    protected function filter(array $data): ?array
     {
+        $filter = [];
+        foreach ($data as $key => $value){
+            $filter[$key] = (is_null($value) ? null : filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS));
+        }
+        return $filter;
     }
 }
